@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as listActions from '../actions';
 
@@ -34,9 +35,11 @@ class Login extends React.Component {
        />
        Password:
        <input name="password-name" type="password" data-testid="password-input" />
-       <button type="button" onClick={ this.buttonClick }>
-         Entrar
-       </button>
+       <Link to="carteira">
+         <button type="button" onClick={ this.buttonClick }>
+           Entrar
+         </button>
+       </Link>
      </section>
    );
  }
