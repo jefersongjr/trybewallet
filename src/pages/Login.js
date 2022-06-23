@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addUser } from '../actions';
+import * as listActions from '../actions';
 
 class Login extends React.Component {
  state = {
@@ -10,6 +11,13 @@ class Login extends React.Component {
  handleChange = ({ target }) => {
    const { name, value } = target;
    this.setState({ [name]: value });
+ }
+
+ buttonClick = () => {
+   const { email } = this.state;
+   const { addUser } = this.props;
+
+   addUser(email);
  }
 
  render() {
@@ -26,7 +34,7 @@ class Login extends React.Component {
        />
        Password:
        <input name="password-name" type="password" data-testid="password-input" />
-       <button type="button">
+       <button type="button" onClick={ this.buttonClick }>
          Entrar
        </button>
      </section>
@@ -35,7 +43,11 @@ class Login extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addUser: (user) => dispatch(addUser(user)),
+  addUser: (user) => dispatch(listActions.addUser(user)),
 });
+
+Login.propTypes = {
+  addUser: PropTypes.string.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(Login);
