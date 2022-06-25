@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import './Login.css';
 import * as listActions from '../actions';
 
 class Login extends React.Component {
@@ -42,22 +43,29 @@ class Login extends React.Component {
    const { email, password, isDisabled } = this.state;
    return (
      <section className="login-box">
-       Username:
-       <input
-         name="email"
-         value={ email }
-         type="email"
-         onChange={ this.handleChange }
-         data-testid="email-input"
-       />
-       Password:
-       <input
-         name="password"
-         type="password"
-         value={ password }
-         onChange={ this.handleChange }
-         data-testid="password-input"
-       />
+       <h2> Wallet </h2>
+       <label htmlFor="email">
+         Username:
+         <input
+           name="email"
+           value={ email }
+           type="email"
+           onChange={ this.handleChange }
+           data-testid="email-input"
+           className="input-form"
+         />
+       </label>
+       <label htmlFor="password">
+         Password:
+         <input
+           name="password"
+           type="password"
+           value={ password }
+           onChange={ this.handleChange }
+           data-testid="password-input"
+           className="input-form"
+         />
+       </label>
        <button
          type="button"
          disabled={ isDisabled }
