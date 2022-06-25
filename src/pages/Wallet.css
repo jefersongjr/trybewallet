@@ -1,0 +1,18 @@
+.Header {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid gray;
+    justify-content: right;
+    padding-right: 20px;
+    background-color: rgb(106, 118, 118);
+    font-weight: bold;
+}
+
+.Header p:first-child {
+    margin-right: 100px;
+}
+
+.Header p {
+    margin-right: 10px;
+}
+
