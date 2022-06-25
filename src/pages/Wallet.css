@@ -1,18 +1,19 @@
 .Header {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 2px solid gray;
-    justify-content: right;
-    padding-right: 20px;
-    background-color: rgb(106, 118, 118);
-    font-weight: bold;
-}
-
-.Header p:first-child {
-    margin-right: 100px;
+  display: flex;
+  border-bottom: 2px solid gray;
+  flex-direction: row;
+  justify-content: right;
+  background-color: rgb(106, 118, 118);
+  padding-right: 20px;
+  font-weight: 700;
 }
 
 .Header p {
     margin-right: 10px;
+  }
+
+.Header p:first-child {
+  margin-right: 100px;
 }
+
 
