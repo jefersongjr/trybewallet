@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getCurrencies } from '../actions';
 import Forms from '../components/Forms';
 import Header from '../components/Header';
+import Table from '../components/ExpensesTable';
 import './Wallet.css';
 
 class Wallet extends React.Component {
@@ -17,13 +18,15 @@ class Wallet extends React.Component {
       <div>
         <Header />
         <Forms />
+        <Table />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  currencies: state.currencies,
+  currencies: state.wallet.currencies,
+  expenses: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({

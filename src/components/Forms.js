@@ -18,15 +18,13 @@ class Forms extends React.Component {
   }
 
   buttonClickSave = () => {
-    const { inputValue } = this.state;
     const { addExpenses } = this.props;
 
-    addExpenses(inputValue);
+    addExpenses(this.state);
   }
 
   render() {
     const { currencies } = this.props;
-    const { inputValue, moeda, method, tag, description } = this.state;
     return (
       <form>
         <label htmlFor="inputValue">
@@ -95,15 +93,10 @@ class Forms extends React.Component {
 
         <button
           type="button"
-          onClick={ this.buttonClick }
+          onClick={ this.buttonClickSave }
         >
           Salvar
         </button>
-
-        <p>
-          { `${inputValue}, ${moeda} ,${method} ,${tag}, ${description}` }
-        </p>
-
       </form>
 
     );
@@ -112,6 +105,7 @@ class Forms extends React.Component {
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
+  expenses: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({

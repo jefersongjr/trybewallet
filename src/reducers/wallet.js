@@ -9,7 +9,7 @@ const wallet = (state = INITIAL_STATE, action) => {
     return ({ ...state, currencies: action.payload });
 
   case 'ADD_EXPENSES':
-    return ({ ...state, currencies: action.payload });
+    return ({ ...state, expenses: [action.payload] });
 
   default:
     return state;
