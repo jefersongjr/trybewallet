@@ -2,8 +2,8 @@
   background-color: rgb(106, 118, 118);
   border-bottom: 2px solid gray;
   display: flex;
-  font-weight: 700;
   flex-direction: row;
+  font-weight: 700;
   justify-content: right;
   padding-right: 20px;
 }
