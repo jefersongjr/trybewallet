@@ -23,9 +23,9 @@ class Forms extends React.Component {
             name="moeda"
             id="moeda"
           >
-            { currencies.map((currencie) => (
-              <option key={ `${currencie}` }>
-                { currencie }
+            { currencies.map((currency) => (
+              <option key={ `${currency}` }>
+                { currency }
               </option>))}
           </select>
         </label>
