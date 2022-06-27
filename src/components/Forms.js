@@ -7,8 +7,8 @@ class Forms extends React.Component {
   state = {
     inputValue: '',
     moeda: 'USD',
-    method: 'Dinheiro',
-    tag: 'Alimentação',
+    method: '',
+    tag: '',
     description: '',
   }
 
@@ -59,6 +59,7 @@ class Forms extends React.Component {
           <select
             data-testid="method-input"
             name="method"
+            id="method"
             onChange={ this.handleChange }
           >
             <option>Dinheiro</option>
@@ -68,7 +69,7 @@ class Forms extends React.Component {
         </label>
 
         <label htmlFor="tag">
-          category:
+          Categoria:
           <select
             data-testid="tag-input"
             name="tag"
