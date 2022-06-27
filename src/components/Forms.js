@@ -3,17 +3,32 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class Forms extends React.Component {
+  state = {
+    inputValue: '',
+    moeda: 'USD',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
+    description: '',
+  }
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+  }
+
   render() {
     const { currencies } = this.props;
+    const { inputValue, moeda, method, tag, description } = this.state;
     return (
       <form>
-        <label htmlFor="expense-value">
+        <label htmlFor="inputValue">
           Valor:
           <input
             data-testid="value-input"
-            name="expense-value"
+            name="inputValue"
             type="number"
             min="0"
+            onChange={ this.handleChange }
           />
         </label>
 
@@ -22,6 +37,7 @@ class Forms extends React.Component {
           <select
             name="moeda"
             id="moeda"
+            onChange={ this.handleChange }
           >
             { currencies.map((currency) => (
               <option key={ `${currency}` }>
@@ -35,6 +51,7 @@ class Forms extends React.Component {
           <select
             data-testid="method-input"
             name="method"
+            onChange={ this.handleChange }
           >
             <option>Dinheiro</option>
             <option>Cartão de crédito</option>
@@ -42,11 +59,12 @@ class Forms extends React.Component {
           </select>
         </label>
 
-        <label htmlFor="method">
-          Método de Pagamento:
+        <label htmlFor="tag">
+          category:
           <select
             data-testid="tag-input"
-            name="category"
+            name="tag"
+            onChange={ this.handleChange }
           >
             <option>Alimentação</option>
             <option>Lazer</option>
@@ -56,15 +74,18 @@ class Forms extends React.Component {
           </select>
         </label>
 
-        <label htmlFor="expense-description">
+        <label htmlFor="description">
           Descrição:
           <input
             data-testid="description-input"
-            name="expense-description"
+            name="description"
             type="text"
+            onChange={ this.handleChange }
           />
         </label>
-        {console.log(currencies)}
+        <p>
+          { `${inputValue}, ${moeda} ,${method} ,${tag}, ${description}` }
+        </p>
 
       </form>
 
