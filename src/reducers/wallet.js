@@ -8,6 +8,9 @@ const wallet = (state = INITIAL_STATE, action) => {
   case 'ADD_CURRENCIES':
     return ({ ...state, currencies: action.payload });
 
+  case 'ADD_EXPENSES':
+    return ({ ...state, currencies: action.payload });
+
   default:
     return state;
   }

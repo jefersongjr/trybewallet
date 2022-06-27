@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as listActions from '../actions';
 
 class Forms extends React.Component {
   state = {
@@ -14,6 +15,13 @@ class Forms extends React.Component {
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
+  }
+
+  buttonClickSave = () => {
+    const { inputValue } = this.state;
+    const { addExpenses } = this.props;
+
+    addExpenses(inputValue);
   }
 
   render() {
@@ -83,6 +91,14 @@ class Forms extends React.Component {
             onChange={ this.handleChange }
           />
         </label>
+
+        <button
+          type="button"
+          onClick={ this.buttonClick }
+        >
+          Salvar
+        </button>
+
         <p>
           { `${inputValue}, ${moeda} ,${method} ,${tag}, ${description}` }
         </p>
@@ -97,7 +113,12 @@ const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  addExpenses: (expenses) => dispatch(listActions.addExpenses(expenses)),
+});
+
 Forms.propTypes = {
   currencies: PropTypes.string.isRequired,
+  addExpenses: PropTypes.func.isRequired,
 };
-export default connect(mapStateToProps)(Forms);
+export default connect(mapStateToProps, mapDispatchToProps)(Forms);

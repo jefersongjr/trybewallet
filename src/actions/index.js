@@ -10,9 +10,14 @@ export const addWallet = (wallet) => ({
   payload: wallet,
 });
 
-export const addCurrencies = (currencies) => ({
+const addCurrencies = (currencies) => ({
   type: 'ADD_CURRENCIES',
   payload: currencies,
+});
+
+export const addExpenses = (expenses) => ({
+  type: 'ADD_EXPENSES',
+  payload: expenses,
 });
 
 export function getCurrencies() {
