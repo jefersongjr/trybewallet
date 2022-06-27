@@ -1,8 +1,8 @@
 .login-box {
+  align-items: center;
   background-color: rgb(211, 236, 238);
   border: 2px solid gray;
   border-radius: 15px;
-  align-items: center;
   display: flex;
   flex-wrap: wrap;
   height: 300px;
