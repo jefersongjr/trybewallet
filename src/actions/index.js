@@ -1,3 +1,5 @@
+import getEconomyApi from '../services/econonyApiFetch';
+
 export const addUser = (user) => ({
   type: 'ADD_USER',
   payload: user,
@@ -13,10 +15,10 @@ export const addCurrencies = (currencies) => ({
   payload: currencies,
 });
 
-export function fetchCurrencies() {
+export function getCurrencies() {
   return async (dispatch) => {
-    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
-    const json = await response.json();
-    dispatch(addCurrencies(json));
+    getEconomyApi().then((resp) => {
+      dispatch(addCurrencies(resp));
+    });
   };
 }
