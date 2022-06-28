@@ -18,9 +18,10 @@ class Forms extends React.Component {
   }
 
   buttonClickSave = () => {
+    const { inputValue, moeda, method, tag, description } = this.state;
     const { addExpenses } = this.props;
 
-    addExpenses(this.state);
+    addExpenses(inputValue, moeda, method, tag, description);
   }
 
   render() {

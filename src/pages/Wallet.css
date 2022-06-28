@@ -15,3 +15,13 @@
 .Header p:first-child {
   margin-right: 100px;
 }
+
+table{
+  border: 2px solid black
+
+}
+
+th {
+  background-color: darkcyan;
+  border: 2px solid black
+}
