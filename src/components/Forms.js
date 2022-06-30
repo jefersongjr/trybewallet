@@ -20,8 +20,10 @@ class Forms extends React.Component {
   buttonClickSave = () => {
     const { inputValue, moeda, method, tag, description } = this.state;
     const { addExpenses } = this.props;
+    const x = localStorage.getItem('exchangeRates');
+    const exchangeRates = JSON.parse(x);
 
-    addExpenses(inputValue, moeda, method, tag, description);
+    addExpenses({ inputValue, moeda, method, tag, description, exchangeRates });
   }
 
   render() {
@@ -96,7 +98,7 @@ class Forms extends React.Component {
           type="button"
           onClick={ this.buttonClickSave }
         >
-          Salvar
+          Adicionar despesa
         </button>
       </form>
 

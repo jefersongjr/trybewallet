@@ -12,11 +12,12 @@ const wallet = (state = INITIAL_STATE, action) => {
     return ({ ...state,
       expenses: [...state.expenses, (
         { id: state.expenses.length,
-          value: action.payload,
-          description: action.payload,
-          currency: action.payload,
-          method: action.payload,
-          tag: action.payload,
+          value: action.payload.inputValue,
+          description: action.payload.description,
+          currency: action.payload.moeda,
+          method: action.payload.method,
+          tag: action.payload.tag,
+          exchangeRates: action.payload.exchangeRates,
         })] });
 
   default:
