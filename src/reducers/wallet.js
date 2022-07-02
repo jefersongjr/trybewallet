@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
+  exchanges: [],
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
@@ -18,7 +19,11 @@ const wallet = (state = INITIAL_STATE, action) => {
           method: action.payload.method,
           tag: action.payload.tag,
           exchangeRates: action.payload.exchangeRates,
-        })] });
+        }
+      )] });
+
+  case 'ADD_EXCHANGE':
+    return ({ ...state, exchanges: action.payload });
 
   default:
     return state;

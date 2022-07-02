@@ -1,4 +1,4 @@
-import getEconomyApi from '../services/econonyApiFetch';
+import { getEconomyApi, getEconomyApiExchanges } from '../services/econonyApiFetch';
 
 export const addUser = (user) => ({
   type: 'ADD_USER',
@@ -20,10 +20,23 @@ export const addExpenses = (expenses) => ({
   payload: expenses,
 });
 
+export const addExchange = (exchange) => ({
+  type: 'ADD_EXCHANGE',
+  payload: exchange,
+});
+
 export function getCurrencies() {
   return async (dispatch) => {
-    getEconomyApi().then((resp) => {
+    await getEconomyApi().then((resp) => {
       dispatch(addCurrencies(resp));
+    });
+  };
+}
+
+export function getExchange() {
+  return async (dispatch) => {
+    await getEconomyApiExchanges().then((resp) => {
+      dispatch(addExchange(resp));
     });
   };
 }

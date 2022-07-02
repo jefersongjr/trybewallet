@@ -1,12 +1,17 @@
-const getEconomyApi = async () => {
+export const getEconomyApi = async () => {
   const ENDPOINT = 'https://economia.awesomeapi.com.br/json/all';
   const response = await fetch(ENDPOINT);
   const json = await response.json();
-  const jsonArray = Object.entries(json);
-  const jsonFilter = jsonArray.filter((x) => x[0] !== 'USDT');
-  localStorage.setItem('exchangeRates', JSON.stringify(jsonFilter));
-  const jsonCode = jsonFilter.map((x) => x[0]);
-  return jsonCode;
+  const jsonArray = Object.keys(json);
+  const jsonFilter = jsonArray.filter((x) => x !== 'USDT');
+  return jsonFilter;
 };
 
-export default getEconomyApi;
+export const getEconomyApiExchanges = async () => {
+  const ENDPOINT = 'https://economia.awesomeapi.com.br/json/all';
+  const response = await fetch(ENDPOINT);
+  const json = await response.json();
+  console.log(json);
+
+  return json;
+};

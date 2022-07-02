@@ -3,13 +3,20 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as listActions from '../actions';
 
+const INITIAL_STATE = {
+  inputValue: 0,
+  moeda: 'USD',
+  method: 'Dinheiro',
+  tag: 'Alimentação',
+  description: '',
+};
+
 class Forms extends React.Component {
-  state = {
-    inputValue: '',
-    moeda: 'USD',
-    method: '',
-    tag: '',
-    description: '',
+  state = INITIAL_STATE
+
+  componentDidMount() {
+    const { getExchangeProps } = this.props;
+    getExchangeProps();
   }
 
   handleChange = ({ target }) => {
@@ -19,11 +26,18 @@ class Forms extends React.Component {
 
   buttonClickSave = () => {
     const { inputValue, moeda, method, tag, description } = this.state;
-    const { addExpenses } = this.props;
-    const x = localStorage.getItem('exchangeRates');
-    const exchangeRates = JSON.parse(x);
+    const { addExpenses, exchanges } = this.props;
+    /* const exchangeRates = exchanges.reduce((obj, item) => ({
+      ...obj, [item[0]]: item[1],
+    }), {}); */
+
+    const exchangeRates = exchanges;
+
+    console.log(exchanges);
 
     addExpenses({ inputValue, moeda, method, tag, description, exchangeRates });
+
+    this.setState(INITIAL_STATE);
   }
 
   render() {
@@ -74,6 +88,7 @@ class Forms extends React.Component {
           <select
             data-testid="tag-input"
             name="tag"
+            id="tag"
             onChange={ this.handleChange }
           >
             <option>Alimentação</option>
@@ -109,14 +124,19 @@ class Forms extends React.Component {
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
   expenses: state.wallet.expenses,
+  exchanges: state.wallet.exchanges,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addExpenses: (expenses) => dispatch(listActions.addExpenses(expenses)),
+  getExchangeProps: () => dispatch(listActions.getExchange()),
+
 });
 
 Forms.propTypes = {
   currencies: PropTypes.string.isRequired,
   addExpenses: PropTypes.func.isRequired,
+  getExchangeProps: PropTypes.func.isRequired,
+  exchanges: PropTypes.string.isRequired,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Forms);
