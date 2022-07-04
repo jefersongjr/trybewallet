@@ -12,7 +12,7 @@ const wallet = (state = INITIAL_STATE, action) => {
   case 'ADD_EXPENSES':
     return ({ ...state,
       expenses: [...state.expenses, (
-        { id: action.payload.id,
+        { id: state.expenses.length,
           value: action.payload.inputValue,
           description: action.payload.description,
           currency: action.payload.moeda,

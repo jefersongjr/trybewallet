@@ -5,7 +5,6 @@ import * as listActions from '../actions';
 
 const INITIAL_STATE = {
   inputValue: 0,
-  id: 0,
   moeda: 'USD',
   method: 'Dinheiro',
   tag: 'Alimentação',
@@ -34,7 +33,7 @@ class Forms extends React.Component {
 
     addExpenses({ id, inputValue, moeda, method, tag, description, exchangeRates });
 
-    this.setState({ ...INITIAL_STATE, id: id + 1 });
+    this.setState(INITIAL_STATE);
   }
 
   render() {
