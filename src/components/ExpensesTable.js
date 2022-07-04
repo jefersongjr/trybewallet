@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class Table extends React.Component {
-   buttonHandleClick = ({ target }) => console.log(target.id)
+   buttonHandleClick = ({ target }) => {
+     const { expenses } = this.props;
+     const y = expenses.map((x) => x.id);
+     console.log(y);
+     console.log(target);
+   };
 
    render() {
      const numero = 1;
