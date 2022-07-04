@@ -42,6 +42,7 @@ class Forms extends React.Component {
 
   render() {
     const { currencies } = this.props;
+    const { inputValue, moeda, method, tag, description } = this.state;
     return (
       <form>
         <label htmlFor="inputValue">
@@ -49,6 +50,8 @@ class Forms extends React.Component {
           <input
             data-testid="value-input"
             name="inputValue"
+            id="inputValue"
+            value={ inputValue }
             type="number"
             min="0"
             onChange={ this.handleChange }
@@ -60,6 +63,7 @@ class Forms extends React.Component {
           <select
             name="moeda"
             id="moeda"
+            value={ moeda }
             onChange={ this.handleChange }
           >
             { currencies.map((currency) => (
@@ -75,6 +79,7 @@ class Forms extends React.Component {
             data-testid="method-input"
             name="method"
             id="method"
+            value={ method }
             onChange={ this.handleChange }
           >
             <option>Dinheiro</option>
@@ -89,6 +94,7 @@ class Forms extends React.Component {
             data-testid="tag-input"
             name="tag"
             id="tag"
+            value={ tag }
             onChange={ this.handleChange }
           >
             <option>Alimentação</option>
@@ -104,6 +110,8 @@ class Forms extends React.Component {
           <input
             data-testid="description-input"
             name="description"
+            id="description"
+            value={ description }
             type="text"
             onChange={ this.handleChange }
           />
