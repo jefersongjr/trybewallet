@@ -5,6 +5,7 @@ import * as listActions from '../actions';
 
 const INITIAL_STATE = {
   inputValue: 0,
+  id: 0,
   moeda: 'USD',
   method: 'Dinheiro',
   tag: 'Alimentação',
@@ -25,16 +26,15 @@ class Forms extends React.Component {
   }
 
   buttonClickSave = () => {
-    const { inputValue, moeda, method, tag, description } = this.state;
     const { addExpenses, exchanges } = this.props;
+    const { id, inputValue, moeda, method, tag, description } = this.state;
 
     const exchangeRates = exchanges;
+    delete exchangeRates.USDT;
 
-    console.log(exchanges);
+    addExpenses({ id, inputValue, moeda, method, tag, description, exchangeRates });
 
-    addExpenses({ inputValue, moeda, method, tag, description, exchangeRates });
-
-    this.setState(INITIAL_STATE);
+    this.setState({ ...INITIAL_STATE, id: id + 1 });
   }
 
   render() {

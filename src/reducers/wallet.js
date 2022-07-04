@@ -12,7 +12,7 @@ const wallet = (state = INITIAL_STATE, action) => {
   case 'ADD_EXPENSES':
     return ({ ...state,
       expenses: [...state.expenses, (
-        { id: state.expenses.length,
+        { id: action.payload.id,
           value: action.payload.inputValue,
           description: action.payload.description,
           currency: action.payload.moeda,
@@ -24,6 +24,11 @@ const wallet = (state = INITIAL_STATE, action) => {
 
   case 'ADD_EXCHANGE':
     return ({ ...state, exchanges: action.payload });
+
+  case 'DELETE_EXPENSES':
+    return ({ ...state,
+      expenses: state.expenses.filter((expense) => (
+        expense.id !== action.id)) });
 
   default:
     return state;
