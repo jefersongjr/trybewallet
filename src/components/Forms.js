@@ -27,9 +27,6 @@ class Forms extends React.Component {
   buttonClickSave = () => {
     const { inputValue, moeda, method, tag, description } = this.state;
     const { addExpenses, exchanges } = this.props;
-    /* const exchangeRates = exchanges.reduce((obj, item) => ({
-      ...obj, [item[0]]: item[1],
-    }), {}); */
 
     const exchangeRates = exchanges;
 

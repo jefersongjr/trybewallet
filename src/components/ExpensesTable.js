@@ -3,16 +3,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class Table extends React.Component {
+  state = {
+    targetId: '',
+  }
+
    buttonHandleClick = ({ target }) => {
-     const { expenses } = this.props;
-     const y = expenses.map((x) => x.id);
-     console.log(y);
-     console.log(target);
+     this.setState({
+       targetId: target.id,
+     });
+     const { targetId } = this.state;
+     console.log(targetId);
    };
 
    render() {
      const numero = 1;
      const { expenses } = this.props;
+     const { targetId } = this.state;
      return (
        <table>
          <th>Descrição</th>
@@ -24,7 +30,7 @@ class Table extends React.Component {
          <th>Valor convertido</th>
          <th>Moeda de conversão</th>
          <th>Editar/Excluir</th>
-         { expenses && expenses.map((x) => (
+         { expenses && expenses.filter((y) => y.id !== parseFloat(targetId)).map((x) => (
            <tr key={ x.id }>
              <td key={ x.description }>
                {x.description}
@@ -49,6 +55,7 @@ class Table extends React.Component {
                  type="button"
                  onClick={ this.buttonHandleClick }
                  id={ x.id }
+                 data-testid="delete-btn"
                >
                  Excluir Despesa
                </button>
